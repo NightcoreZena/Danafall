@@ -1,5 +1,5 @@
 const discord = require("discord.js");
-const botConfig = require("./botconfig.json")
+const botConfig = require("./botConfig.json")
 const ms = require("parse-ms")
 const PREFIX = botConfig.prefix
 const color = botConfig.color
