@@ -3,6 +3,7 @@ const botConfig = require("./botConfig.json")
 const ms = require("parse-ms")
 const PREFIX = botConfig.prefix
 const color = botConfig.color
+const token = require("./token.json")
 
 const fs = require("fs");
 
@@ -81,4 +82,5 @@ bot.on("message", async message => {
 
 });
 
-bot.login(process.env.token);
+
+bot.login(token.token)
