@@ -20,9 +20,9 @@ bot.on("ready", async () => {
   let statuses = [` | ${PREFIX}help.`, ` | In ${bot.guilds.cache.size} guilds.`, ` | ${bot.user.username}!`]
 
   setInterval(function () {
-      let status = statuses[Math.floor(Math.random() * statuses.length)]
+    let status = statuses[Math.floor(Math.random() * statuses.length)]
 
-      bot.user.setActivity(status, { type: "PLAYING" })
+    bot.user.setActivity(status, { type: "PLAYING" })
   }, 2000)
 })
 
@@ -34,8 +34,8 @@ bot.on("message", async message => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return message.channel.send(":x: | Sorry, my commands do not work in DM.");
 
-  
-  
+
+
 
   var msg = message.content.toLowerCase();
 
@@ -46,9 +46,9 @@ bot.on("message", async message => {
       message.delete();
 
       var embed = new discord.MessageEmbed()
-.setColor(color)
-.setAuthor(`${message.author.tag} has been warned`, message.author.displayAvatarURL())
-.setDescription(`**Reason** bad word usage`)
+        .setColor(color)
+        .setAuthor(`${message.author.tag} has been warned`, message.author.displayAvatarURL())
+        .setDescription(`**Reason** bad word usage`)
       return message.channel.send(embed)
     }
 
@@ -65,10 +65,10 @@ bot.on("message", async message => {
     let commandFile = require(`./commands/${command}.js`);
     commandFile.run(bot, message, args);
     console.log(`user ${message.author.tag} executed ${command}`)
-    
 
 
-    
+
+
 
 
 
@@ -77,6 +77,22 @@ bot.on("message", async message => {
 
 
 
+  }
+  try {
+    let frozenFile = require(`./frozen/${command}.js`)
+    frozenFile.run(bot, message, args);
+    console.log(`user ${message.author.tag} executed ${command}`)
+
+
+  } catch (err) {
+    console.error(err)
+  }
+  try {
+    let funFile = require(`./fun/${command}.js`)
+    funFile.run(bot, message, args);
+    console.log(`user ${message.author.tag} executed ${command}`)
+  } catch (err) {
+    console.error(err)
   }
 
 
