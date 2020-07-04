@@ -1,5 +1,5 @@
 const discord = require("discord.js");
-const botConfig = require("../botConfig.json");
+const botConfig = require("../../botConfig.json");
 var color = (botConfig.color)
 
 
@@ -59,7 +59,7 @@ module.exports.run = async (bot, message, args) => {
             Let the storm rage on`)
             
             .setColor(color)
-            .setFooter('Into the unknown - lyrics')
+            .setFooter('Let it go - lyrics')
             .setTimestamp()
             .setThumbnail(message.author.avatarURL())
         message.channel.send(embedstandaard)

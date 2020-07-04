@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
     function image(message) {
 
         var options = {
-            url: "http://results.dogpile.com/serp?qc=images&q=" + "kermit memes",
+            url: "http://results.dogpile.com/serp?qc=images&q=" + "meliodas seven deadly sins",
             method: "GET",
             headers: {
                 "Accept": "text/html",
@@ -40,7 +40,6 @@ module.exports.run = async (bot, message, args) => {
                 .setImage(urls[Math.floor(Math.random() * urls.length)])
                 .setFooter(`Requested by ${message.author.tag} | ${message.author.id}`)
             message.channel.send(embed)
-
         })
     }
 }

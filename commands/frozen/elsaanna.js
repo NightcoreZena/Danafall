@@ -1,17 +1,18 @@
 const cheerio = require('cheerio')
 const request = require('request')
 const discord = require("discord.js");
-const botConfig = require("../botConfig.json");
+const botConfig = require("../../botConfig.json");
 var color = (botConfig.color)
 
 module.exports.run = async (bot, message, args) => {
     image(message)
 
 
+
     function image(message) {
 
         var options = {
-            url: "http://results.dogpile.com/serp?qc=images&q=" + "minion memes",
+            url: "http://results.dogpile.com/serp?qc=images&q=" + "anna and elsa Frozen",
             method: "GET",
             headers: {
                 "Accept": "text/html",
