@@ -16,20 +16,20 @@ const bot = new discord.Client();
 bot.commands = new discord.Collection();
 
 bot.on("ready", async () => {
-  console.log(`${bot.user.username} is now online!`)
+  console.log(`print ("Hello World")`)
   let statuses = [` | ${PREFIX}help.`, ` | In ${bot.guilds.cache.size} guilds.`, ` | ${bot.user.username}!`]
 
   setInterval(function () {
     let status = statuses[Math.floor(Math.random() * statuses.length)]
 
-    bot.user.setActivity(status, { type: "PLAYING" })
+    bot.user.setActivity(status, { type: "Watching" })
   }, 2000)
 })
 
 
 
 var swearWord = ["kkr", "kanker", "kqnker", "kqnk3r"]
-
+var link = ["https://", "www."]
 bot.on("message", async message => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return message.channel.send(":x: | Sorry, my commands do not work in DM.");
@@ -69,12 +69,24 @@ bot.on("message", async message => {
 
       message.delete();
 
-      var embed = new discord.MessageEmbed()
+      var embedswear = new discord.MessageEmbed()
         .setColor(color)
         .setAuthor(`${message.author.tag} has been warned`, message.author.displayAvatarURL())
-        .setDescription(`**Reason** bad word usage`)
-      return message.channel.send(embed)
+        .setDescription(`**Reason:** Bad word usage`)
+      return message.channel.send(embedswear)
     }
+
+  for (let l = 0; l < link.length; l++) {
+    if (msg.includes(link[l])) {
+      message.delete();
+
+      var embedlink = new discord.MessageEmbed()
+      .setColor(color)
+      .setAuthor(`${message.author.tag} has been warned`, message.author.displayAvatarURL())
+      .setDescription(`**Reason:** Posted a link`)
+      return message.channel.send(embedlink)
+    }
+  }
 
   }
 
@@ -162,6 +174,14 @@ bot.on("message", async message => {
     musicFile.run(bot, message, args);
     console.log(`user ${message.author.tag} executed ${command}`)
     
+  } catch (err) {
+    console.error(err)
+  }
+  try {
+    let ticketFile = require(`./commands/tickets/${command}.js`)
+    ticketFile.run(bot, message, args)
+    console.log(`user ${message.author.tag} executed ${command}`)
+
   } catch (err) {
     console.error(err)
   }
